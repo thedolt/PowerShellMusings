@@ -14,17 +14,6 @@ if ($downEvent.TimeCreated -gt $upEvent.TimeCreated)
         Write-Host "Starting Local Service..."
         Start-Service Wecsvc
     }
-    # Uncomment for debugging
-<#
-    if ($downEvent.TimeCreated -gt (Get-Date).AddMinutes(-5))
-    {
-        Write-Host "Foreign collector service hasn't been down for at least 5 minutes."
-    }
-    if ((Get-Service Wecsvc).Status -eq "Running")
-    {
-        Write-Host "Local collector service is already running."
-    }
-#>
 }
 else
 {
@@ -34,11 +23,4 @@ else
         Write-Host "Stopping local service..."
         Stop-Service Wecsvc
     }
-    # Uncomment for debugging
-<# 
-    else
-    {
-        Write-Host "Collector service has already been stopped."
-    }
-#>
 }
